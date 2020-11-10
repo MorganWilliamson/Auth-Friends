@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { AddFriend } from "../components/AddFriend";
 import FriendCard from "./FriendCard";
 
 class FriendsList extends React.Component {
@@ -43,6 +44,7 @@ class FriendsList extends React.Component {
                     <p>{friend.email}</p>
                 </div>
             ))}
+            <AddFriend handleSubmit={this.handleSubmit} />
         </div>)
     }
 };
