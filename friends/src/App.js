@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { PrivateRoute } from "./components/PrivateRoute";
 import './App.css';
+
+import LoginForm from "./components/LoginForm";
+import FriendsList from "./components/FriendsList";
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -10,6 +15,8 @@ function App() {
       return(<li>
               <Link to="/friends">Friends List</Link>
             </li>)
+    } else {
+      return(<div></div>)
     }
   }
 
@@ -25,6 +32,13 @@ function App() {
             showLink()
           }
         </ul>
+        <Switch>
+          <PrivateRoute exact path="/friends" component={FriendsList}/>
+          <Route path="/login" render={(props) => {
+            return <LoginForm {...props} setLoggedIn={setLoggedIn} />
+          }} />
+          {/* <Route component={LoginForm} /> */}
+        </Switch>
       </div>
     </Router>
   );
