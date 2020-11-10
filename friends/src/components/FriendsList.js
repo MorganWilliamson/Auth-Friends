@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import FriendCard from "./FriendCard";
 
 class FriendsList extends React.Component {
     state = {
@@ -12,11 +14,7 @@ class FriendsList extends React.Component {
 
     getData = () => {
         axiosWithAuth()
-            .get("/friends", {
-                headers: {
-                    authorization: localStorage.getItem("token")
-                }
-            })
+            .get("/friends")
             .then((res) => {
                 console.log(res)
                 this.setState({
@@ -27,10 +25,24 @@ class FriendsList extends React.Component {
                 console.log(err)
             });
     };
+
+    handleSubmit = (friends) => (
+        this.setState({friends})
+    );
+
+    //Delete friend function goes here?
       
     render(){
-        return(<div>
+        return(
+        <div className="friendsList">
             <p>FriendsList rendering.</p>
+            {this.state.friends.map(friend => (
+                <div>
+                    <Link to={`/friends/${friend.id}`}>{friend.name}</Link>
+                    <p>{friend.age}</p>
+                    <p>{friend.email}</p>
+                </div>
+            ))}
         </div>)
     }
 };

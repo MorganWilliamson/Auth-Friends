@@ -37,7 +37,7 @@ function App() {
           <Route path="/login" render={(props) => {
             return <LoginForm {...props} setLoggedIn={setLoggedIn} />
           }} />
-          {/* <Route component={LoginForm} /> */}
+          <Route component={LoginForm} />
         </Switch>
       </div>
     </Router>
