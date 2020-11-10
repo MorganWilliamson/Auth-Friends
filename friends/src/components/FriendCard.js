@@ -8,7 +8,7 @@ export default function FriendCard() {
 
     useEffect(() => {
         axiosWithAuth()
-            .get(`/friends/${id}`)
+            .get(`/api/friends/${id}`)
             .then((res) => {
                 setFriend(res.data)
             })

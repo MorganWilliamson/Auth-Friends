@@ -15,7 +15,7 @@ class FriendsList extends React.Component {
 
     getData = () => {
         axiosWithAuth()
-            .get("/friends")
+            .get("/api/friends")
             .then((res) => {
                 console.log(res)
                 this.setState({
