@@ -37,14 +37,11 @@ class FriendsList extends React.Component {
         return(
         <div className="friendsList">
             <p>FriendsList rendering.</p>
-            {this.state.friends.map(friend => (
-                <div>
-                    <Link to={`/friends/${friend.id}`}>{friend.name}</Link>
-                    <p>{friend.age}</p>
-                    <p>{friend.email}</p>
-                </div>
-            ))}
-            <AddFriend handleSubmit={this.handleSubmit} />
+            {this.state.friends.map(friend => {
+                return(
+                    <FriendCard key={friend.id} friend={friend} />)
+                })}
+            <AddFriend onSubmit={this.handleSubmit} />
         </div>)
     }
 };

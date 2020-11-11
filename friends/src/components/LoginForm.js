@@ -3,9 +3,10 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 class LoginForm extends React.Component {
     state = {
+        //Remember to come back and set credential state to an empty string.
         credentials: {
-            username: '',
-            password: '',
+            username: 'Lambda School',
+            password: 'i<3Lambd4',
         }
     };
 
@@ -25,7 +26,7 @@ class LoginForm extends React.Component {
         axiosWithAuth()
             .post("/api/login", this.state.credentials)
             .then((res) => {
-                window.localStorage.setItem("token", res.data.payload)
+                localStorage.setItem("token", res.data.payload)
                 this.props.history.push("/friends")
                 // this.props.setLoggedIn(true)
             })
