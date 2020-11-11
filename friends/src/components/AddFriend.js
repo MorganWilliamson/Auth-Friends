@@ -1,0 +1,64 @@
+import React, { useState } from "react";
+import { axiosWithAuth } from "../utils/axiosWithAuth"
+
+const initialState = {
+    name: "",
+    age: "",
+    email: "",
+};
+
+export const AddFriend = (props) => {
+    const [friendInfo, setFriendInfo] = useState(initialState);
+
+    const handleChange = (e) => {
+        setFriendInfo({
+            ...friendInfo,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axiosWithAuth()
+            .post("/api/friends", friendInfo)
+            .then((req) => {
+                props.handleSubmit(req)
+                setFriendInfo(initialState)
+            })
+            .catch((err) => {
+                console.log("Error adding friend: ", err)
+            });
+    };
+
+    return(
+        <div>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Name"
+                    value={friendInfo.name}
+                    onChange={handleChange}
+                />
+                <input 
+                    type="text"
+                    id="age"
+                    name="age"
+                    placeholder="Age"
+                    value={friendInfo.age}
+                    onChange={handleChange}
+                />
+                <input 
+                    type="text"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    value={friendInfo.email}
+                    onChange={handleChange}
+                />
+                <button>Add a New Friend</button>
+            </form>
+        </div>
+    );
+};
