@@ -21,8 +21,8 @@ export const AddFriend = (props) => {
         e.preventDefault();
         axiosWithAuth()
             .post("/api/friends", friendInfo)
-            .then((res) => {
-                props.handleSubmit(res)
+            .then((req) => {
+                props.handleSubmit(req)
                 setFriendInfo(initialState)
             })
             .catch((err) => {
@@ -35,6 +35,7 @@ export const AddFriend = (props) => {
             <form onSubmit={handleSubmit}>
                 <input 
                     type="text"
+                    id="name"
                     name="name"
                     placeholder="Name"
                     value={friendInfo.name}
@@ -42,6 +43,7 @@ export const AddFriend = (props) => {
                 />
                 <input 
                     type="text"
+                    id="age"
                     name="age"
                     placeholder="Age"
                     value={friendInfo.age}
@@ -49,6 +51,7 @@ export const AddFriend = (props) => {
                 />
                 <input 
                     type="text"
+                    id="email"
                     name="email"
                     placeholder="Email"
                     value={friendInfo.email}

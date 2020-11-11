@@ -25,8 +25,8 @@ class LoginForm extends React.Component {
         console.log(this.state.credentials)
         axiosWithAuth()
             .post("/api/login", this.state.credentials)
-            .then((res) => {
-                localStorage.setItem("token", res.data.payload)
+            .then((req) => {
+                localStorage.setItem("token", req.data.payload)
                 this.props.history.push("/friends")
                 // this.props.setLoggedIn(true)
             })

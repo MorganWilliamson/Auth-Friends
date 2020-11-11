@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-export default function FriendCard() { 
-    const [friend, setFriend] = useState({});
+export default function FriendCard({ friend }) { 
+    const [friendValue, setFriendValue] = useState({});
     const { id } = useParams();
 
     useEffect(() => {
         axiosWithAuth()
             .get(`/api/friends/${id}`)
-            .then((res) => {
-                setFriend(res.data)
+            .then((req) => {
+                setFriendValue(req.data)
             })
             .catch((err) => {
                 console.log("FriendCard error: ", err)
             })
-    }, []);
+    }, [id]);
 
     return (
         <div className="friendCard">
-            <h3>{friend.name}</h3>
+            <Link to={`/friends/${friend.id}`}>
+                <h3>{friend.name}</h3>
+            </Link>
             <p>Age: {friend.age}</p>
             <p>Email: {friend.email}</p>
         </div>

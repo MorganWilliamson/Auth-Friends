@@ -25,14 +25,11 @@ function App() {
     <Router>
       <div className="App">
         <p>App rendering.</p>
-        <ul>
-          <li>
+        <header>
             <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/friends">Friends (Please login first.)</Link>
-          </li>
-        </ul>
+            <br></br>
+            <Link to="/friends">Friends (Please login)</Link>
+        </header>
         <Switch>
           <PrivateRoute exact path="/friends" component={FriendsList}/>
           <PrivateRoute exact path="/friends/:id" component={FriendCard}/>
