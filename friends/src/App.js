@@ -30,7 +30,7 @@ function App() {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/friends">(Login to Access)</Link>
+            <Link to="/friends">Friends (Please login first.)</Link>
           </li>
         </ul>
         <Switch>

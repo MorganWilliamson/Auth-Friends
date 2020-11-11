@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { AddFriend } from "../components/AddFriend";
 import FriendCard from "./FriendCard";

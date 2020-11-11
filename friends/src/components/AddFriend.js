@@ -22,7 +22,7 @@ export const AddFriend = (props) => {
         axiosWithAuth()
             .post("/api/friends", friendInfo)
             .then((res) => {
-                props.handleSubmit(res.data)
+                props.handleSubmit(res)
                 setFriendInfo(initialState)
             })
             .catch((err) => {
